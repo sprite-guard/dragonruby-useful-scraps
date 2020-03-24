@@ -1,7 +1,7 @@
 class Circle
   attr_accessor :resolution, :scaling, :scale_rate, :color
 
-  def initialize resolution: 8, scaling: :dynamic, scale_rate: 8, color: [100, 100, 100, 255]
+  def initialize resolution: 8, scaling: :dynamic, scale_rate: 8, color: [0, 0, 0, 255]
     # if scaling is :dynamic, the number of points returned
     # scales with the radius of the circle, starting at the
     # base resolution and increasing by 1 every time r increases
