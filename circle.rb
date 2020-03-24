@@ -23,7 +23,7 @@ class Circle
       res = @resolution
     end
 
-    TAU = 6.28318530717958647692
+    TAU = 2 * Math::PI
     angle = TAU / res
 
     points = []
