@@ -1,7 +1,7 @@
 class Circle
   attr_accessor :resolution, :scaling, :scale_rate, :color
 
-  def initialize resolution: 8, scaling: :dynamic, scale_rate: 8, color: [100, 0, 100, 255]
+  def initialize resolution: 8, scaling: :dynamic, scale_rate: 8, color: [100, 100, 100, 255]
     @resolution = resolution
     @scaling = scaling
     @scale_rate = scale_rate
