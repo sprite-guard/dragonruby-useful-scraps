@@ -1,6 +1,12 @@
 class ComplexRotation
 
   attr_accessor :z
+  
+  def self.heading from, to
+    x_offset = to[:x] - from[:x]
+    y_offset = to[:y] - from[:y]
+    return ComplexRotation.new(Math.atan2(y_offset, x_offset))
+  end
 
   def initialize theta
     @z = Complex(Math.cos(theta), Math.sin(theta))
