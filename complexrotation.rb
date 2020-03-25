@@ -24,5 +24,9 @@ class ComplexRotation
   def -(other)
     return ComplexRotation.new(@z * other.z.conjugate)
   end
+  
+  def is_complexrotation
+    true
+  end
 
 end
