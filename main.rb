@@ -4,6 +4,8 @@ require 'app/circle.rb'
 require 'app/bzflower.rb'
 
 def tick args
+
+  # circle rendering demo
   circ ||= Circle.new(resolution: 6, scaling: :static, scale_rate: 3)
   args.state.test_circle ||= { :x => 300, :y => 300, :r => 100 }
   bez ||= BezierFlower.new(args.state.test_circle, args.outputs.lines, resolution: 10)
@@ -53,4 +55,7 @@ def tick args
   circ.draw args.state.test_circle, bez
   circ.scaling = :dynamic
   circ.draw args.state.test_circle, args.outputs.lines
+  
+  # complex rotations demo
+  # TODO
 end
