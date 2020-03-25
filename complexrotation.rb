@@ -1,3 +1,4 @@
+# NB has not been thoroughly tested
 class ComplexRotation
 
   attr_accessor :z
