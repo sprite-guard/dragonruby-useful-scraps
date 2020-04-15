@@ -1,13 +1,12 @@
-require 'app/bezier.rb'
-
 class BezierFlower
-  attr_accessor :center, :color, :renderer, :resolution, :bezier
+  attr_accessor :center, :color, :renderer, :resolution, :bezier, :color
 
-  def initialize center, renderer, resolution: 20
+  def initialize center, renderer, resolution: 20, color: [0,0,0]
     @resolution = resolution
     @center = center
     @renderer = renderer
-    @bezier = Bezier.new
+    @bezier = Bezier.new(color: color)
+    @color = color
   end
 
   def << line

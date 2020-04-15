@@ -3,10 +3,15 @@ class Bezier
   # Based on the "cubic bezier" sample app.
   # this was all created by Amir Rajan
   # I just wrapped it in a class.
+  
+  attr_accessor :color
+  
+  def initialize color: [0,0,0]
+    @color = color
+  end
 
   def lines x1, y1, x2, y2, x3, y3, x4, y4, step
     step ||= 0
-    color = [0, 0, 0]
     points = point_list [x1, y1], [x2, y2], [x3, y3], [x4, y4], step
 
     points.each_cons(2).map do |p1, p2|

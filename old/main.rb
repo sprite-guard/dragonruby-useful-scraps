@@ -2,13 +2,16 @@
 
 require 'app/circle.rb'
 require 'app/bzflower.rb'
+require 'app/complexrotation.rb'
 
 def tick args
 
   # circle rendering demo
-  circ ||= Circle.new(resolution: 6, scaling: :static, scale_rate: 3)
+  circ ||= Circle.new(resolution: 6, scaling: :static, scale_rate: 3, color: [255, 255, 255])
   args.state.test_circle ||= { :x => 300, :y => 300, :r => 100 }
   bez ||= BezierFlower.new(args.state.test_circle, args.outputs.lines, resolution: 10)
+  
+  args.outputs.background_color = [ 0, 20, 40 ]
   args.state.dr ||= 1
   args.state.dx ||= 1
   args.state.dy ||= 1
@@ -57,5 +60,25 @@ def tick args
   circ.draw args.state.test_circle, args.outputs.lines
   
   # complex rotations demo
-  # TODO
+  if args.state.tick_count == 0
+    clock_center = args.state.test_circle
+    clock_outer = {
+      x: args.state.clock_center[:x] + 64,
+      y: args.state.clock_center[:y] + 64
+    }
+    args.state.clock_center = clock_center
+    args.state.clock_outer = clock_outer
+    args.state.clock_rotation = ComplexRotation.heading clock_center, clock_outer
+    args.state.tick_size = ComplexRotation.new((1/60) * Math::PI)
+  end
+  
+  args.state.clock_rotation = args.state.clock_rotation + args.state.tick_size
+  ctr = args.state.clock_center
+  pt = args.state.clock_outer
+  next_point = args.state.clock_rotation.rotate_around pt, origin: ctr
+  args.state.clock_outer = next_point
+  
+  args.outputs.solids
+  
+  args.outputs.lines << [ args.state.clock_center, args.state.clock_outer, 255, 255, 255 ]
 end
